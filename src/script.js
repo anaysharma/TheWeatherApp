@@ -6,7 +6,7 @@ async function getLocation ( city ) {
 			`http://api.openweathermap.org/geo/1.0/direct?q=${ city }&limit=5&appid=${ API_KEY }`
 		);
 		const locationData = await location.json();
-
+		parseResponseJson( locationData );
 	} catch ( error ) {
 		console.error( error );
 	}
@@ -48,5 +48,14 @@ async function getWeather ( coordinates ) {
 	}
 }
 
-let dat = getLocation("london");
-console.log(dat)
+
+function parseResponseJson ( data ) {
+	if ( data.length === 1 ) {
+		let lat = data.lat;
+		let lon = data.lon;
+		return { lat, lon };
+	} else {
+
+	}
+}
+getLocation("london")
