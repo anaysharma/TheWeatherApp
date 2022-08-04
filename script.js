@@ -11,6 +11,8 @@ const weekWeatherBox = document.createElement("div");
 const modalBox = document.createElement("dialog");
 const closeModal = document.createElement("button");
 const submitModal = document.createElement("button");
+const cityList = document.createElement("form");
+const modalHeading = document.createElement("h2");
 
 closeModal.classList.add("close-modal");
 submitModal.classList.add("submit-modal");
@@ -21,12 +23,16 @@ searchButton.classList.add("search-button");
 currentLocationButton.classList.add("location-button");
 messageBox.classList.add("message-box");
 weekWeatherBox.classList.add("week-weather");
+cityList.classList.add("city-list");
+modalHeading.classList.add("modal-heading");
 
 closeModal.innerText = "✖";
 submitModal.innerText = "Submit";
 searchButton.innerText = "Search";
+modalHeading.innerText = "Select your City";
 currentLocationButton.innerText = "Use Current Location";
 searchInput.setAttribute("type", "text");
+submitModal.setAttribute("type", "submit");
 
 searchBox.append (
 	searchInput,
@@ -36,6 +42,8 @@ searchBox.append (
 );
 
 weatherBox.appendChild( weatherInfo );
+modalBox.append( closeModal, cityList );
+cityList.appendChild( modalHeading );
 
 mainBox.append (
 	weatherBox,
@@ -89,8 +97,9 @@ async function getWeather ( coordinates ) {
 			`https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ API_KEY }`
 		);
 		const weatherData = await weatherResponse.json();
-		console.log( weatherData );
+		handleWeatherData( weatherData );
 	} catch ( error ) {
+		alert("we are having trouble getting weather info :(");
 		console.error( error );						
 	}
 }
@@ -100,10 +109,42 @@ function parseResponseJson ( data ) {
 	if ( data.length === 1 ) {
 		let lat = data.lat;
 		let lon = data.lon;
-		return { lat, lon };
+		getWeather({ lat, lon });
 	} else {
-		const requiredData = {};
-		// requiredData.
+		for ( let i = 0; i < data.length; i++ ) {
+			const cityListItem = document.createElement("input");
+			const cityListItemLabel = document.createElement("label");
+			cityListItem.classList.add("city-list-item");
+			cityListItem.setAttribute("name", "city-choice");
+			cityListItem.setAttribute("id", data[i].name + ", " + data[i].state );
+			cityListItem.setAttribute("type", "radio");
+			cityListItem.setAttribute("value", i );
+			cityListItemLabel.innerText = data[i].name + ", " + data[i].state;
+			if ( i === 0 ) { cityListItem.setAttribute("checked", "")}
+			cityList.append( cityListItem, cityListItemLabel, submitModal );
+			modalBox.show();
+		}
+		handleFormData( data );
 	}
 }
-getLocation("london")
+
+function handleFormData ( locData ) {
+	cityList.addEventListener("submit", function(event) {
+		var data = new FormData(cityList);
+		for (const entry of data) {
+			var output = { "latitude" : locData[entry[1]].lat,
+				"longitude" : locData[entry[1]].lon
+			};
+		};
+		getWeather( output );
+		event.preventDefault();
+	}, false);
+}
+
+function handleWeatherData ( data ) {
+	console.log(data)
+	// const html = JSON.stringify( data );
+	// weatherBox.innerText = html;
+}
+
+getLocation("agra")
