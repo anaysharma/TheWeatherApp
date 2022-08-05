@@ -96,7 +96,6 @@ function handleFormData ( locData ) {
 }
 
 function handleWeatherData ( data ) {
-	console.log(data);
 	document.querySelector(".clouds-data").append(`${ data.clouds.all } %`);
 	document.querySelector(".wind-deg-data").append(`${ data.wind.deg } from N`);
 	document.querySelector(".sunset-data").append(`${ convertMsToTime( data.sys.sunset + data.timezone )} PM`);
