@@ -8,5 +8,81 @@
 	<link rel="stylesheet" type="text/css" href="input.css">
 </head>
 <body>
+	<main class="main-box">
+		<div class="left-pane">
+			<div class="clouds">
+				<h3>Clouds</h2>
+				<h3 class="clouds-data"></h3>
+			</div>
+			<div class="sunrise">
+				<h3>Sunrise</h3>
+				<h3 class="sunrise-data"></h3>
+			</div>
+			<div class="sunset">
+				<h3>Sunset</h3>
+				<h3 class="sunset-data"></h3>
+			</div>
+			<div class="wind-deg">
+				<h3>Wind Direction</h2>
+				<h3 class="wind-deg-data"></h3>
+			</div>
+			<div class="gust">
+				<h3>Gust</h3>
+				<h3 class="gust-data"></h3>
+			</div>
+			<div class="wind-speed">
+				<h3>Wind Speed</h3>
+				<h3 class="wind-speed-data"></h3>
+			</div>
+		</div>
+
+		<div class="middle-pane">
+			<div class="city-container">
+				<div class="image"></div>
+				<h1 class="city"></h1>
+				<div class="weather"></div>
+				<div class="temp"></div>
+				<div class="feels-like"></div>
+				<input class="search-input" type="text" placeholder="Enter City Name">
+				<button class="search-button">Check Weather</button>
+				<button class="current-location">Use Current Location</button>
+			</div>
+		</div>
+
+		<div class="right-pane">
+			<div class="ground-level">
+				<h3>Ground Level</h3>
+				<h3 class="ground-level-data"></h3>
+			</div>
+			<div class="humidity">
+				<h3>Humidity</h3>
+				<h3 class="humidity-data"></h3>
+			</div>
+			<div class="pressure">
+				<h3>Pressure</h3>
+				<h3 class="pressure-data"></h3>
+			</div>
+			<div class="sea-level">
+				<h3>Sea Level</h3>
+				<h3 class="sea-level-data"></h3>
+			</div>
+			<div class="temp-min">
+				<h3>Minimum Temperature</h3>
+				<h3 class="temp-min-data"></h3>
+			</div>
+			<div class="temp-max">
+				<h3>Maximum Temperature</h3>
+				<h3 class="temp-max-data"></h3>
+			</div>
+		</div>
+	</main>
+
+	<dialog class="modal">
+		<button class="close-modal">✖</button>
+		<h3 class="modal-title">Choose City</h3>
+		<form class="form" id="city"></form>
+		<button class="submit-button" type="submit" form="city">Select</button>
+		<button class="cancel-button" type="reset" form="city">Cancel</button>
+	</dialog>
 </body>
 </html>

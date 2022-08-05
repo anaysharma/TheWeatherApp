@@ -1,57 +1,10 @@
-const body = document.body;
-const mainBox = document.createElement("main");
-const weatherBox = document.createElement("div");
-const weatherInfo = document.createElement("div");
-const searchBox = document.createElement("div");
-const searchInput = document.createElement("input");
-const searchButton = document.createElement("button");
-const currentLocationButton = document.createElement("button");
-const messageBox = document.createElement("div");
-const weekWeatherBox = document.createElement("div");
-const modalBox = document.createElement("dialog");
-const closeModal = document.createElement("button");
-const submitModal = document.createElement("button");
-const cityList = document.createElement("form");
-const modalHeading = document.createElement("h2");
+const modal = document.querySelector(".modal");
+const cityList = document.querySelector(".form");
+const cityTitle = document.querySelector(".city");
+const searchInput = document.querySelector(".search-input");
+const searchButton = document.querySelector(".search-button");
 
-closeModal.classList.add("close-modal");
-submitModal.classList.add("submit-modal");
-weatherBox.classList.add("weather-box");
-weatherInfo.classList.add("weather-info");
-searchBox.classList.add("search-box");
-searchButton.classList.add("search-button");
-currentLocationButton.classList.add("location-button");
-messageBox.classList.add("message-box");
-weekWeatherBox.classList.add("week-weather");
-cityList.classList.add("city-list");
-modalHeading.classList.add("modal-heading");
-
-closeModal.innerText = "✖";
-submitModal.innerText = "Submit";
-searchButton.innerText = "Search";
-modalHeading.innerText = "Select your City";
-currentLocationButton.innerText = "Use Current Location";
-searchInput.setAttribute("type", "text");
-submitModal.setAttribute("type", "submit");
-
-searchBox.append (
-	searchInput,
-	messageBox,
-	searchButton,
-	currentLocationButton
-);
-
-weatherBox.appendChild( weatherInfo );
-modalBox.append( closeModal, cityList );
-cityList.appendChild( modalHeading );
-
-mainBox.append (
-	weatherBox,
-	searchBox,
-	weekWeatherBox
-);
-
-body.append( mainBox, modalBox );
+cityTitle.innerText = " - - "
 
 const API_KEY = "81987dd79e0d74f1918035c9e09b452e";
 
@@ -121,18 +74,19 @@ function parseResponseJson ( data ) {
 			cityListItem.setAttribute("value", i );
 			cityListItemLabel.innerText = data[i].name + ", " + data[i].state;
 			if ( i === 0 ) { cityListItem.setAttribute("checked", "")}
-			cityList.append( cityListItem, cityListItemLabel, submitModal );
-			modalBox.show();
+			cityList.append( cityListItem, cityListItemLabel );
+			modal.show();
 		}
 		handleFormData( data );
 	}
 }
 
 function handleFormData ( locData ) {
-	cityList.addEventListener("submit", function(event) {
-		var data = new FormData(cityList);
-		for (const entry of data) {
-			var output = { "latitude" : locData[entry[1]].lat,
+	cityList.addEventListener( "submit", function (event) {
+		var data = new FormData( cityList );
+		for ( const entry of data ) {
+			var output = {
+				"latitude" : locData[entry[1]].lat,
 				"longitude" : locData[entry[1]].lon
 			};
 		};
@@ -142,9 +96,57 @@ function handleFormData ( locData ) {
 }
 
 function handleWeatherData ( data ) {
-	console.log(data)
-	// const html = JSON.stringify( data );
-	// weatherBox.innerText = html;
+	console.log(data);
+	document.querySelector(".clouds-data").append(`${ data.clouds.all } %`);
+	document.querySelector(".wind-deg-data").append(`${ data.wind.deg } from N`);
+	document.querySelector(".sunset-data").append(`${ convertMsToTime( data.sys.sunset + data.timezone )} PM`);
+	document.querySelector(".sunrise-data").append(`${ convertMsToTime( data.sys.sunrise + data.timezone )} AM`);
+	document.querySelector(".gust-data").append(`${ data.wind.gust } m/s`);
+	document.querySelector(".wind-speed-data").append(`${ data.wind.speed } m/s`);
+	document.querySelector(".weather").append(`${ data.weather[0].description }`)
+	document.querySelector(".temp").append(`${ data.main.temp } °C`);
+	document.querySelector(".feels-like").append(`${ data.main.feels_like } °C`);
+	document.querySelector(".ground-level-data").append(`${ data.main.grnd_level } hPa`);
+	document.querySelector(".humidity-data").append(`${ data.main.humidity } g.m-3`);
+	document.querySelector(".pressure-data").append(`${ data.main.pressure } hPa`);
+	document.querySelector(".sea-level-data").append(`${ data.main.sea_level } hPa`);
+	document.querySelector(".temp-min-data").append(`${ Math.floor( data.main.temp_min - 273 )} °C`);
+	document.querySelector(".temp-max-data").append(`${ Math.floor( data.main.temp_max - 273 )} °C`);
+	document.querySelector(".city").innerText = data.name;
+	modal.close();
 }
 
-getLocation("agra")
+
+function convertUTCDateToLocalDate ( time ) {
+
+    var newDate = new Date( date.getTime() + date.getTimezoneOffset() * 60 * 1000 );
+    var offset = date.getTimezoneOffset() / 60;
+    var hours = date.getHours();
+    newDate.setHours( hours - offset );
+    return newDate;   
+}
+
+function padTo2Digits ( num ) {
+	return num.toString().padStart(2, '0');
+}
+
+function convertMsToTime ( milliseconds ) {
+	let seconds = Math.floor(milliseconds / 1000);
+	let minutes = Math.floor(seconds / 60);
+	let hours = Math.floor(minutes / 60);
+
+	seconds = seconds % 60;
+	minutes = minutes % 60;
+	hours = hours % 24;
+
+	let time = `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(
+	seconds,
+	)}`;
+
+	return time;
+}
+
+searchButton.addEventListener( 'click', () => {
+	var cityName = searchInput.value;
+	getLocation(`${ cityName }`);
+})
