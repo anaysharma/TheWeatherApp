@@ -3,8 +3,7 @@ const cityList = document.querySelector(".form");
 const cityTitle = document.querySelector(".city");
 const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
-
-cityTitle.innerText = " - - "
+const closeButton = document.querySelector(".close-modal");
 
 const API_KEY = "81987dd79e0d74f1918035c9e09b452e";
 
@@ -47,6 +46,7 @@ async function getWeather ( coordinates ) {
 			`https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ API_KEY }`
 		);
 		const weatherData = await weatherResponse.json();
+		console.log( weatherData )
 		handleWeatherData( weatherData );
 	} catch ( error ) {
 		alert("we are having trouble getting weather info :(");
@@ -56,9 +56,9 @@ async function getWeather ( coordinates ) {
 
 function parseResponseJson ( data ) {
 	if ( data.length === 1 ) {
-		let lat = data.lat;
-		let lon = data.lon;
-		getWeather({ lat, lon });
+		let latitude = data[0].lat;
+		let longitude = data[0].lon;
+		getWeather({ latitude, longitude });
 	} else {
 		for ( let i = 0; i < data.length; i++ ) {
 			const cityListItem = document.createElement("input");
@@ -94,23 +94,27 @@ function handleFormData ( locData ) {
 }
 
 function handleWeatherData ( data ) {
-	document.querySelector(".clouds-data").append(`${ data.clouds.all }%`);
-	document.querySelector(".wind-deg-data").append(`${ data.wind.deg } from N`);
-	document.querySelector(".sunset-data").append(`${ convertMsToTime( data.sys.sunset + data.timezone )} PM`);
-	document.querySelector(".sunrise-data").append(`${ convertMsToTime( data.sys.sunrise + data.timezone )} AM`);
-	document.querySelector(".gust-data").append(`${ data.wind.gust } m/s`);
-	document.querySelector(".wind-speed-data").append(`${ data.wind.speed } m/s`);
-	document.querySelector(".weather").append(`${ data.weather[0].description }`)
-	document.querySelector(".temp").append(`${ data.main.temp } °C`);
-	document.querySelector(".feels-like").append(`${ data.main.feels_like } °C`);
-	document.querySelector(".ground-level-data").append(`${ data.main.grnd_level } hPa`);
-	document.querySelector(".humidity-data").append(`${ data.main.humidity } g.m-3`);
-	document.querySelector(".pressure-data").append(`${ data.main.pressure } hPa`);
-	document.querySelector(".sea-level-data").append(`${ data.main.sea_level } hPa`);
-	document.querySelector(".temp-min-data").append(`${ Math.floor( data.main.temp_min - 273 )} °C`);
-	document.querySelector(".temp-max-data").append(`${ Math.floor( data.main.temp_max - 273 )} °C`);
-	document.querySelector(".city").innerText = data.name;
-	modal.close();
+	try {
+		document.querySelector(".clouds-data").innerHTML = `${ data.clouds?.all }%`;
+		document.querySelector(".wind-deg-data").innerHTML = `${ data.wind.deg } from N`;
+		document.querySelector(".sunset-data").innerHTML = `${ convertMsToTime( data.sys.sunset + data.timezone )} PM`;
+		document.querySelector(".sunrise-data").innerHTML = `${ convertMsToTime( data.sys.sunrise + data.timezone )} AM`;
+		document.querySelector(".gust-data").innerHTML = `${ data.wind.gust } m/s`;
+		document.querySelector(".wind-speed-data").innerHTML = `${ data.wind.speed } m/s`;
+		document.querySelector(".weather").innerHTML = `${ data.weather[0].description }`;
+		document.querySelector(".temp").append(`${ Math.floor( data.main.temp - 273 )} °C`);
+		document.querySelector(".feels-like").append(`${ Math.floor( data.main.feels_like -273 )} °C`);
+		document.querySelector(".ground-level-data").innerHTML = `${ data.main.grnd_level } hPa`;
+		document.querySelector(".humidity-data").innerHTML = `${ data.main.humidity } g.m-3`;
+		document.querySelector(".pressure-data").innerHTML = `${ data.main.pressure } hPa`;
+		document.querySelector(".sea-level-data").innerHTML = `${ data.main.sea_level } hPa`;
+		document.querySelector(".temp-min-data").innerHTML = `${ Math.floor( data.main.temp_min - 273 )} °C`;
+		document.querySelector(".temp-max-data").innerHTML = `${ Math.floor( data.main.temp_max - 273 )} °C`;
+		document.querySelector(".city").innerText = data.name;
+		modal.close();
+	} catch ( error ) {
+		console.error( error );
+	}
 }
 
 function convertUTCDateToLocalDate ( time ) {
@@ -137,5 +141,9 @@ function convertMsToTime ( milliseconds ) {
 
 searchButton.addEventListener( 'click', () => {
 	var cityName = searchInput.value;
-	getLocation(`${ cityName }`);
+	getLocation( cityName );
+})
+
+closeButton.addEventListener( 'click', () => {
+	modal.close();
 })

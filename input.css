@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&family=Rubik:wght@300;400;500;700&display=swap');
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	width: 100%;
+	font-family: 'Raleway', sans-serif;
+	font-size: 15px;
+	/* TODO: gradient is not working here, and i don't know */
+	background-image: linear-gradient(to bottom, #4B5EB1, #5CA0FF 40%, #8FE7F7, #FFC25D);
+}
+
+main {
+	margin-inline: auto;
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: min(30vw, 600px) 1fr min(30vw, 600px);
+	width: min(100vw, 2000px);
+	height: 100%;
+}
+
+div.left-pane,
+div.right-pane,
+div.city-container {
+	display: grid;
+	padding-block: 5rem;
+	justify-items: center;
+	grid-row-gap: 1rem;
+}
+
+.middle-pane {
+	padding-block: 5rem;
+	display: grid;
+}
+
+h3 {
+	font-weight: 600;
+	opacity: 0.8;
+}
+
+h2 {
+	font-weight: 700;
+	font-family: 'Rubik', sans-serif;
+	opacity: 0.6;
+	background-color: #ddddff;
+	box-shadow: 0 200px 0 200px #ddddff;
+	padding-top: 5px;
+}
+
+div.info-card {
+	width: min(20vw, 400px);
+	height: min(100%, 80px);
+	display: grid;
+	background-color: #fbfbfb;
+	padding: 0.6rem;
+	justify-items: center;
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.3);
+	border: 1px solid #eeeeee;
+}
+
+.city-container {
+	border-radius: 1rem;
+	background-color: #eeeeff;
+	box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.3);
+	border: 1px solid #eeeeee;
+}
+
+.city {
+	font-size: 6rem;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 400;
+}
+
+/*.image {
+	width: 100px;
+	aspect-ratio: 1;
+	opacity: 0.4;
+}
+*/
+div.weather {
+	width: min(320px, 100%);
+	background-color: #ffffff;
+	padding: 1rem 2rem 1.2rem 2rem;
+	border-radius: 1rem;
+	font-size: 2rem;
+	font-weight: 600;
+	opacity: 0.8;
+	justify-items: center;
+	display: grid;
+}
+
+.main-temp {
+	font-weight: 500;
+	font-size: 1.5rem;
+}
+
+.temp,
+.feels-like {
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+input.search-input {
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: #ffffff;
+	border: 1px solid #eeeeee;
+	font-size: 1.3em;
+	width: min(320px, 100%);
+	text-align: center;
+	border: 3px solid #5555ff;
+}
+
+.search-button,
+.current-location {
+	width: min(320px, 100%);
+	padding: 1rem;
+	font-size: 1.2em;
+	border-radius: 1rem;
+	border: none;
+	box-shadow: 0 1rem 1rem -0.5rem #dddddd;
+	background-color: #ffffff;
+	cursor: pointer;
+	color: #555555;
+}
+
+.search-button:hover,
+.current-location:hover {
+	outline: 1px solid #aaaaff;
+	box-shadow: 0 1rem 1.5rem -0.5rem #aaaaaa;
+	background-color: #eeeeee;
+}
+
+dialog {
+	/*inset: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;*/
+	border: none;
+}
+
+.modal-content {
+	background-color: #ffffff;
+	width: 400px;
+	display: grid;
+	grid-template-rows: 2rem 1fr 3rem;
+	padding: 2rem;
+	border-radius: 1rem;
+	box-shadow: 0 1.5rem 3rem -1.5rem #888888;
+	grid-row-gap: 1rem;
+}
+
+.button-box {
+	display: flex;
+	width: 100%;
+	justify-items: space-between;
+	column-gap: 2rem;
+}
+
+.submit-button,
+.cancel-button {
+	width: 100%;
+	font-size: 1.3rem;
+	font-weight: 400;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+.submit-button {
+	background-color: #4444ff;
+	border: none;
+	color: #ffffff;
+}
+
+.cancel-button {
+	border: none;
+	background-color: #dddddd;
+}
+
+.close-modal {
+	border: none;
+	background-color: #ffffff;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+#city {
+	display: grid;
+	grid-auto-rows: 2rem;
+	grid-row-gap: 1rem;
+}
+
+.modal-top {
+	align-items: center;
+	display: flex;
+}
+
+.submit-button:hover {
+	box-shadow: 0 0.5rem 1rem -0.5rem #888888;
+	opacity: 0.8;
+	background-color: #4444ff;	
+}
+
+.cancel-button:hover {
+	box-shadow: 0 0.5rem 1rem -0.5rem #bbbbbb;
+	background-color: #eeeeee;
+}
