@@ -31,14 +31,11 @@ function getCurrentLocation () {
 		}
 	);
 	function onSuccess ( position ) {
-		const {
-			latitude,
-			longitude
-		} = position.coords;
+		const {	latitude, longitude	} = position.coords;
 		return { latitude, longitude };
 	}
 	function onError ( error ) {
-		console.log ( error );
+		console.log( error );
 	}
 }
 
@@ -57,7 +54,6 @@ async function getWeather ( coordinates ) {
 	}
 }
 
-
 function parseResponseJson ( data ) {
 	if ( data.length === 1 ) {
 		let lat = data.lat;
@@ -73,7 +69,9 @@ function parseResponseJson ( data ) {
 			cityListItem.setAttribute("type", "radio");
 			cityListItem.setAttribute("value", i );
 			cityListItemLabel.innerText = data[i].name + ", " + data[i].state;
-			if ( i === 0 ) { cityListItem.setAttribute("checked", "")}
+			if ( i === 0 ) {
+				cityListItem.setAttribute("checked", "")
+			}
 			cityList.append( cityListItem, cityListItemLabel );
 			modal.show();
 		}
@@ -96,7 +94,7 @@ function handleFormData ( locData ) {
 }
 
 function handleWeatherData ( data ) {
-	document.querySelector(".clouds-data").append(`${ data.clouds.all } %`);
+	document.querySelector(".clouds-data").append(`${ data.clouds.all }%`);
 	document.querySelector(".wind-deg-data").append(`${ data.wind.deg } from N`);
 	document.querySelector(".sunset-data").append(`${ convertMsToTime( data.sys.sunset + data.timezone )} PM`);
 	document.querySelector(".sunrise-data").append(`${ convertMsToTime( data.sys.sunrise + data.timezone )} AM`);
@@ -115,9 +113,7 @@ function handleWeatherData ( data ) {
 	modal.close();
 }
 
-
 function convertUTCDateToLocalDate ( time ) {
-
     var newDate = new Date( date.getTime() + date.getTimezoneOffset() * 60 * 1000 );
     var offset = date.getTimezoneOffset() / 60;
     var hours = date.getHours();
@@ -133,16 +129,10 @@ function convertMsToTime ( milliseconds ) {
 	let seconds = Math.floor(milliseconds / 1000);
 	let minutes = Math.floor(seconds / 60);
 	let hours = Math.floor(minutes / 60);
-
 	seconds = seconds % 60;
 	minutes = minutes % 60;
 	hours = hours % 24;
-
-	let time = `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(
-	seconds,
-	)}`;
-
-	return time;
+	return `${padTo2Digits( hours )}:${padTo2Digits( minutes )}:${padTo2Digits(	seconds )}`;
 }
 
 searchButton.addEventListener( 'click', () => {
