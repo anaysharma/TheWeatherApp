@@ -46,7 +46,6 @@ async function getWeather ( coordinates ) {
 			`https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ API_KEY }`
 		);
 		const weatherData = await weatherResponse.json();
-		console.log( weatherData )
 		handleWeatherData( weatherData );
 	} catch ( error ) {
 		alert("we are having trouble getting weather info :(");
@@ -60,6 +59,7 @@ function parseResponseJson ( data ) {
 		let longitude = data[0].lon;
 		getWeather({ latitude, longitude });
 	} else {
+		cityList.innerHTML = "";
 		for ( let i = 0; i < data.length; i++ ) {
 			const cityListItem = document.createElement("input");
 			const cityListItemLabel = document.createElement("label");
@@ -73,8 +73,8 @@ function parseResponseJson ( data ) {
 				cityListItem.setAttribute("checked", "")
 			}
 			cityList.append( cityListItem, cityListItemLabel );
-			modal.show();
 		}
+		modal.showModal();
 		handleFormData( data );
 	}
 }
@@ -89,7 +89,6 @@ function handleFormData ( locData ) {
 			};
 		};
 		getWeather( output );
-		event.preventDefault();
 	}, false);
 }
 

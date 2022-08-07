@@ -13,8 +13,8 @@ body {
 	width: 100%;
 	font-family: 'Raleway', sans-serif;
 	font-size: 15px;
-	/* TODO: gradient is not working here, and i don't know */
-	background-image: linear-gradient(to bottom, #4B5EB1, #5CA0FF 40%, #8FE7F7, #FFC25D);
+	background-color: #F2F2F2;
+	/*background-image: linear-gradient(to bottom, #CAC3E6, #DAE4F2 40%, #DAE4F2, #E6E4CF);*/
 }
 
 main {
@@ -30,19 +30,19 @@ div.left-pane,
 div.right-pane,
 div.city-container {
 	display: grid;
-	padding-block: 5rem;
+	padding-block: 4rem;
 	justify-items: center;
 	grid-row-gap: 1rem;
 }
 
 .middle-pane {
-	padding-block: 5rem;
+	padding-block: 4rem;
 	display: grid;
 }
 
 h3 {
 	font-weight: 600;
-	opacity: 0.8;
+	opacity: 0.6;
 }
 
 h2 {
@@ -58,26 +58,29 @@ div.info-card {
 	width: min(20vw, 400px);
 	height: min(100%, 80px);
 	display: grid;
-	background-color: #fbfbfb;
+	background-color: #F2F2F2;
 	padding: 0.6rem;
 	justify-items: center;
 	border-radius: 1rem;
 	overflow: hidden;
-	box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.3);
-	border: 1px solid #eeeeee;
+	box-shadow:
+		-0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.6), 
+		0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
 }
 
 .city-container {
 	border-radius: 1rem;
-	background-color: #eeeeff;
-	box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.3);
-	border: 1px solid #eeeeee;
+	background-color: #F2F2F2;
+	box-shadow:
+		-0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.6), 
+		0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
 }
 
 .city {
 	font-size: 6rem;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 400;
+	color: #6B6D85;
 }
 
 /*.image {
@@ -88,14 +91,19 @@ div.info-card {
 */
 div.weather {
 	width: min(320px, 100%);
-	background-color: #ffffff;
 	padding: 1rem 2rem 1.2rem 2rem;
 	border-radius: 1rem;
 	font-size: 2rem;
 	font-weight: 600;
-	opacity: 0.8;
+	opacity: 0.6;
 	justify-items: center;
 	display: grid;
+	box-shadow:
+		inset -0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.9), 
+		inset 0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.15);
+	background-color: #F2F2F2;
+	display: grid;
+	place-items: center;
 }
 
 .main-temp {
@@ -112,12 +120,15 @@ div.weather {
 input.search-input {
 	padding: 1rem;
 	border-radius: 1rem;
-	background-color: #ffffff;
-	border: 1px solid #eeeeee;
+	background-color: #46A5D0;
+	border: none;
 	font-size: 1.3em;
 	width: min(320px, 100%);
 	text-align: center;
-	border: 3px solid #5555ff;
+	box-shadow:
+		inset -0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.3), 
+		inset 0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+	color: #ffffff;
 }
 
 .search-button,
@@ -127,34 +138,42 @@ input.search-input {
 	font-size: 1.2em;
 	border-radius: 1rem;
 	border: none;
-	box-shadow: 0 1rem 1rem -0.5rem #dddddd;
-	background-color: #ffffff;
+	box-shadow:
+		-0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.6), 
+		0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+	background-color: #F2F2F2;
 	cursor: pointer;
 	color: #555555;
 }
 
-.search-button:hover,
-.current-location:hover {
-	outline: 1px solid #aaaaff;
-	box-shadow: 0 1rem 1.5rem -0.5rem #aaaaaa;
-	background-color: #eeeeee;
+.search-button:hover {
+	box-shadow:
+		inset -0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.9), 
+		inset 0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+	background-color: #F2F2F2;
+}
+
+
+.current-location {
+	cursor: not-allowed;
 }
 
 dialog {
-	/*inset: 0;
-	width: 100%;
-	height: 100%;
-	display: grid;*/
+	/*margin-left: 50%;*/
+	margin: auto;
 	border: none;
+	border-radius: 1rem;
+	background-color: #F2F2F2;
+	box-shadow:
+		-0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.6), 
+		0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
 }
 
 .modal-content {
-	background-color: #ffffff;
 	width: 400px;
 	display: grid;
 	grid-template-rows: 2rem 1fr 3rem;
 	padding: 2rem;
-	border-radius: 1rem;
 	box-shadow: 0 1.5rem 3rem -1.5rem #888888;
 	grid-row-gap: 1rem;
 }
@@ -171,26 +190,19 @@ dialog {
 	width: 100%;
 	font-size: 1.3rem;
 	font-weight: 400;
-	background-color: #ffffff;
-	border: 1px solid #cccccc;
+	background-color: #F2F2F2;
+	border: none;
 	border-radius: 0.5rem;
 	cursor: pointer;
-}
-
-.submit-button {
-	background-color: #4444ff;
-	border: none;
-	color: #ffffff;
-}
-
-.cancel-button {
-	border: none;
-	background-color: #dddddd;
+	box-shadow:
+		-0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.6), 
+		0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+	color: #444444;
 }
 
 .close-modal {
 	border: none;
-	background-color: #ffffff;
+	background-color: #F2F2F2;
 	margin-left: auto;
 	cursor: pointer;
 }
@@ -206,13 +218,28 @@ dialog {
 	display: flex;
 }
 
-.submit-button:hover {
-	box-shadow: 0 0.5rem 1rem -0.5rem #888888;
-	opacity: 0.8;
-	background-color: #4444ff;	
+.submit-button:hover,
+.cancel-button:hover {
+	box-shadow:
+		inset -0.4rem -0.4rem 0.6rem rgba(255, 255, 255, 0.9), 
+		inset 0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+	background-color: #F2F2F2;	
 }
 
-.cancel-button:hover {
-	box-shadow: 0 0.5rem 1rem -0.5rem #bbbbbb;
-	background-color: #eeeeee;
+form {
+	display: grid;
+	grid-template-columns: 3rem 1fr;
+	width: 100%;
+}
+
+dialog::backdrop {
+  background: #F2F2F2;
+}
+
+label {
+	font-size: 1.2rem;
+	padding-inline: 1rem;
+	font-weight: 400;
+	font-family: 'Rubik', sans-serif;
+	color: #555555;
 }
