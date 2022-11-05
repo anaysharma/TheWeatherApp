@@ -10,7 +10,7 @@ const API_KEY = "81987dd79e0d74f1918035c9e09b452e";
 async function getLocation ( city ) {
 	try {
 		const location = await fetch (
-			`http://api.openweathermap.org/geo/1.0/direct?q=${ city }&limit=5&appid=${ API_KEY }`
+			`https://api.openweathermap.org/geo/1.0/direct?q=${ city }&limit=5&appid=${ API_KEY }`
 		);
 		const locationData = await location.json();
 		parseResponseJson( locationData );
