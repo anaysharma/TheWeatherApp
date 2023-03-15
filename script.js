@@ -142,6 +142,7 @@ function handleWeatherData(data) {
 		document.querySelector('.city').innerText = data.name;
 
 		locationThrobber.style.display = 'none';
+		searchThrobber.style.display = 'none';
 	} catch (error) {
 		console.error(error);
 	}
