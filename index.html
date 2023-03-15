@@ -1,95 +1,104 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Weather App</title>
-	<script defer type="text/javascript" src="script.js"></script>
-	<link rel="stylesheet" type="text/css" href="input.css">
-	<link href="./fonts/css/uicons-bold-straight.css" rel="stylesheet">
-</head>
-<body>
-	<main class="main-box">
-		<div class="left-pane">
-			<div class="info-card clouds">
-				<h3><i class="fi-bs-clouds"></i> Clouds</h2>
-				<h2 class="clouds-data"> - - - </h2>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>The Weather App</title>
+		<script defer type="text/javascript" src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="input.css" />
+		<link href="./fonts/css/uicons-bold-straight.css" rel="stylesheet" />
+	</head>
+	<body>
+		<main class="main-box">
+			<div class="left-pane">
+				<div class="info-card clouds">
+					<h3><i class="fi-bs-clouds"></i> Clouds</h3>
+					<h2 class="clouds-data">- - -</h2>
+				</div>
+				<div class="info-card sunrise">
+					<h3><i class="fi-bs-sunrise"></i> Sunrise</h3>
+					<h2 class="sunrise-data">- - -</h2>
+				</div>
+				<div class="info-card sunset">
+					<h3><i class="fi-bs-sunset"></i> Sunset</h3>
+					<h2 class="sunset-data">- - -</h2>
+				</div>
+				<div class="info-card wind-deg">
+					<h3><i class="fi-bs-windsock"></i> Wind Direction</h3>
+					<h2 class="wind-deg-data">- - -</h2>
+				</div>
+				<div class="info-card gust">
+					<h3><i class="fi-bs-wind-warning"></i> Gust</h3>
+					<h2 class="gust-data">- - -</h2>
+				</div>
+				<div class="info-card wind-speed">
+					<h3><i class="fi-bs-wind"></i> Wind Speed</h3>
+					<h2 class="wind-speed-data">- - -</h2>
+				</div>
 			</div>
-			<div class="info-card sunrise">
-				<h3><i class="fi-bs-sunrise"></i> Sunrise</h3>
-				<h2 class="sunrise-data"> - - - </h2>
-			</div>
-			<div class="info-card sunset">
-				<h3><i class="fi-bs-sunset"></i> Sunset</h3>
-				<h2 class="sunset-data"> - - - </h2>
-			</div>
-			<div class="info-card wind-deg">
-				<h3><i class="fi-bs-windsock"></i> Wind Direction</h2>
-				<h2 class="wind-deg-data"> - - - </h2>
-			</div>
-			<div class="info-card gust">
-				<h3><i class="fi-bs-wind-warning"></i> Gust</h3>
-				<h2 class="gust-data"> - - - </h2>
-			</div>
-			<div class="info-card wind-speed">
-				<h3><i class="fi-bs-wind"></i> Wind Speed</h3>
-				<h2 class="wind-speed-data"> - - - </h2>
-			</div>
-		</div>
 
-		<div class="middle-pane">
-			<div class="city-container">
-				<!-- <img class="image" src='./fonts/svg/fi-bs-cloud.svg'></img> -->
-				<h1 class="city"> - - - - </h1>
-				<div class="weather"> - - - </div>
-				<div class="temp"><i class="main-temp"> Temperature : </i></div>
-				<div class="feels-like"><i class="main-temp"> Feels Like : </i></div>
-				<input class="search-input" type="text" placeholder="Enter City Name">
-				<button class="search-button">Check Weather</button>
-				<button class="current-location">Use Current Location</button>
+			<div class="middle-pane">
+				<div class="city-container">
+					<!-- <img class="image" src='./fonts/svg/fi-bs-cloud.svg'></img> -->
+					<h1 class="city">- - - -</h1>
+					<p>weather</p>
+					<div class="weather">- - -</div>
+					<div class="temp"><i class="main-temp"> Temperature : </i></div>
+					<div class="feels-like"><i class="main-temp"> Feels Like : </i></div>
+				</div>
+				<div class="input-box">
+					<input
+						class="search-input"
+						type="text"
+						placeholder="Enter City Name"
+					/>
+					<button class="search-button">Check Weather</button>
+					<button class="current-location">Use Current Location</button>
+				</div>
 			</div>
-		</div>
 
-		<div class="right-pane">
-			<div class="info-card ground-level">
-				<h3><i class="fi-bs-water-lower"></i> Ground Level</h3>
-				<h2 class="ground-level-data"> - - - </h2>
+			<div class="right-pane">
+				<div class="info-card ground-level">
+					<h3><i class="fi-bs-water-lower"></i> Ground Level</h3>
+					<h2 class="ground-level-data">- - -</h2>
+				</div>
+				<div class="info-card humidity">
+					<h3><i class="fi-bs-humidity"></i> Humidity</h3>
+					<h2 class="humidity-data">- - -</h2>
+				</div>
+				<div class="info-card pressure">
+					<h3><i class="fi-bs-arrow-alt-to-bottom"></i> Pressure</h3>
+					<h2 class="pressure-data">- - -</h2>
+				</div>
+				<div class="info-card sea-level">
+					<h3><i class="fi-bs-water-rise"></i> Sea Level</h3>
+					<h2 class="sea-level-data">- - -</h2>
+				</div>
+				<div class="info-card temp-min">
+					<h3><i class="fi-bs-temperature-down"></i> Min. Temperature</h3>
+					<h2 class="temp-min-data">- - -</h2>
+				</div>
+				<div class="info-card temp-max">
+					<h3><i class="fi-bs-temperature-up"></i> Max. Temperature</h3>
+					<h2 class="temp-max-data">- - -</h2>
+				</div>
 			</div>
-			<div class="info-card humidity">
-				<h3><i class="fi-bs-humidity"></i> Humidity</h3>
-				<h2 class="humidity-data"> - - - </h2>
-			</div>
-			<div class="info-card pressure">
-				<h3><i class="fi-bs-arrow-alt-to-bottom"></i> Pressure</h3>
-				<h2 class="pressure-data"> - - - </h2>
-			</div>
-			<div class="info-card sea-level">
-				<h3><i class="fi-bs-water-rise"></i> Sea Level</h3>
-				<h2 class="sea-level-data"> - - - </h2>
-			</div>
-			<div class="info-card temp-min">
-				<h3><i class="fi-bs-temperature-down"></i> Min. Temperature</h3>
-				<h2 class="temp-min-data"> - - - </h2>
-			</div>
-			<div class="info-card temp-max">
-				<h3><i class="fi-bs-temperature-up"></i> Max. Temperature</h3>
-				<h2 class="temp-max-data"> - - - </h2>
-			</div>
-		</div>
-	</main>
+		</main>
 
-	<dialog class="modal">
-		<div class="modal-content">
-			<div class="modal-top">
-				<h3 class="modal-title">Choose City</h3>
-				<button class="close-modal"><i class="fi-bs-cross"></i></button>
+		<dialog class="modal">
+			<div class="modal-content">
+				<div class="modal-top">
+					<h3 class="modal-title">Choose City</h3>
+					<button class="close-modal"><i class="fi-bs-cross"></i></button>
+				</div>
+				<form class="form" id="city" method="dialog"></form>
+				<div class="button-box">
+					<button class="submit-button" type="submit" form="city">
+						Select
+					</button>
+					<button class="cancel-button" type="reset" form="city">Cancel</button>
+				</div>
 			</div>
-			<form class="form" id="city" method="dialog"></form>
-			<div class="button-box">
-				<button class="submit-button" type="submit" form="city">Select</button>
-				<button class="cancel-button" type="reset" form="city">Cancel</button>
-			</div>
-		</div>
-	</dialog>
-</body>
+		</dialog>
+	</body>
 </html>
