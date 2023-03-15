@@ -380,3 +380,15 @@ input[type='radio'] {
 		grid-area: input;
 	}
 }
+
+@media screen and (max-width: 500px) {
+	.main-box {
+		display: grid;
+		grid-template-areas: 'middle-pane' 'left-pane' 'right-pane';
+	}
+
+	.left-pane,
+	.right-pane {
+		width: 100%;
+	}
+}
