@@ -1,0 +1,48 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	<style>
+		g {
+			animation: throbber 2s linear infinite;
+			transform-origin: 50% 50%;
+		}
+
+		@keyframes throbber {
+			0% {
+				rotate: 0;
+			}
+
+			100% {
+				rotate: 360deg;
+			}
+		}
+
+		circle {
+			stroke-linecap: round;
+			stroke-dasharray: 31.4 31.4;
+			animation: spinner 3s linear infinite
+		}
+		@keyframes spinner {
+			0% {
+				stroke-dasharray: 31.4 31.4;
+				stroke-dashoffset: 0
+			}
+
+			25% {
+				stroke-dasharray: 0 62.8;
+				stroke-dashoffset: -62.8;
+			}
+
+			75% {
+				stroke-dasharray: 50.8 12;
+				stroke-dashoffset: -125.7;
+			}
+
+			100% {
+				stroke-dasharray: 31.4 31.4;
+				stroke-dashoffset: -188.5
+			}
+		}
+	</style>
+	<g>
+		<circle cx="12" cy="12" r="10" fill="none" stroke-width="3" stroke="#fff"/>
+	</g>
+</svg>

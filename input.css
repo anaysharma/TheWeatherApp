@@ -163,6 +163,11 @@ body {
 	border-radius: 5px;
 }
 
+.throbber {
+	height: 16px;
+	display: none;
+}
+
 h3,
 i {
 	opacity: 0.6;
@@ -230,6 +235,10 @@ button {
 	transition: 100ms;
 	background-color: #0088ff;
 	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 }
 
 button:hover {
@@ -253,6 +262,18 @@ dialog {
 	background-color: rgba(245, 251, 255);
 	margin: auto;
 	padding: 0;
+	animation: modal 200ms;
+}
+
+@keyframes modal {
+	0% {
+		margin-inline: auto;
+		margin-top: 4rem;
+	}
+
+	100% {
+		margin: auto;
+	}
 }
 
 .modal-content {

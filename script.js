@@ -4,7 +4,10 @@ const cityTitle = document.querySelector('.city');
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-button');
 const closeButton = document.querySelector('.close-modal');
+const cancelButton = document.querySelector('.cancel-button');
 const useCurrentLocation = document.querySelector('.current-location');
+const searchThrobber = document.querySelector('.search-throbber');
+const locationThrobber = document.querySelector('.location-throbber');
 
 const API_KEY = '81987dd79e0d74f1918035c9e09b452e';
 
@@ -71,6 +74,7 @@ function parseResponseJson(data) {
 			cityList.append(cityListItem, cityListItemLabel);
 		}
 		modal.showModal();
+		searchThrobber.style.display = 'none';
 		handleFormData(data);
 	}
 }
@@ -136,7 +140,8 @@ function handleWeatherData(data) {
 			data.main.temp_max - 273
 		)} °C`;
 		document.querySelector('.city').innerText = data.name;
-		modal.close();
+
+		locationThrobber.style.display = 'none';
 	} catch (error) {
 		console.error(error);
 	}
@@ -167,11 +172,21 @@ function convertMsToTime(milliseconds) {
 }
 
 searchButton.addEventListener('click', () => {
+	searchThrobber.style.display = 'unset';
 	var cityName = searchInput.value;
 	getLocation(cityName);
 });
 
-closeButton.addEventListener('click', modal.close);
+closeButton.onclick = () => {
+	modal.close();
+};
 
-useCurrentLocation.onclick = getCurrentLocation;
+cancelButton.onclick = () => {
+	modal.close();
+};
+
+useCurrentLocation.onclick = () => {
+	getCurrentLocation();
+	locationThrobber.style.display = 'unset';
+};
 window.onload = getCurrentLocation;
