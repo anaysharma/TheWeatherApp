@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *,
 *::after,
 *::before {
 	margin: 0;
 	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -382,6 +385,10 @@ input[type='radio'] {
 }
 
 @media screen and (max-width: 500px) {
+	body {
+		font-size: 14px;
+	}
+
 	.main-box {
 		width: calc(100vw - 2rem);
 		display: grid;
