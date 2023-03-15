@@ -392,4 +392,17 @@ input[type='radio'] {
 	.right-pane {
 		width: 100%;
 	}
+
+	.info-card {
+		display: flex;
+		align-items: center;
+	}
+
+	.info-card > * {
+		flex: 1;
+	}
+
+	.info-card > h3 {
+		border-right: 2px solid #0004;
+	}
 }
