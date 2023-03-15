@@ -154,6 +154,11 @@ body {
 	box-shadow: 0 10px 30px -10px #0062;
 }
 
+.left-pane,
+.right-pane {
+	width: min(260px, 30vw);
+}
+
 .info-card {
 	display: grid;
 	justify-items: center;
@@ -204,10 +209,11 @@ i {
 }
 
 .city-container > p {
-	font-size: 0.9em;
+	font-size: 0.8em;
 	padding-top: 1em;
 	border-top: 1px solid #0001;
 	width: 100%;
+	opacity: 0.6;
 }
 
 .weather {
