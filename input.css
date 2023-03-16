@@ -12,6 +12,10 @@ html {
 	height: 100%;
 }
 
+:focus {
+	outline-color: transparent;
+}
+
 html,
 body,
 div,
@@ -86,7 +90,7 @@ body {
 
 .left-pane,
 .right-pane {
-	width: min(260px, 30vw);
+	width: min(260px, 28vw);
 }
 
 .info-card {
@@ -156,11 +160,18 @@ i {
 }
 
 .search-input {
-	border: 1px solid #adf;
+	font-size: 1rem;
+	text-align: center;
+	border: 1px solid #8cf;
 	background-color: #fffa;
 	border-radius: 5px;
 	padding-inline: 1em;
 	box-shadow: 0 3px 10px -3px #0042;
+}
+
+.search-input:focus-visible {
+	outline: 3px solid #0088ff;
+	outline-offset: -2px;
 }
 
 button {
@@ -168,7 +179,7 @@ button {
 	border-radius: 5px;
 	background-color: #fff;
 	cursor: pointer;
-	transition: 100ms;
+	transition: 140ms;
 	background-color: #0088ff;
 	color: white;
 	display: flex;
@@ -177,45 +188,46 @@ button {
 	gap: 10px;
 }
 
-button:hover:not(button:focus) {
-	box-shadow: 0 3px 10px #0462;
-	transform: translateY(-5px);
+button:hover {
+	box-shadow: 0 3px 10px #0468, 0 4px 0 #0088ff;
+	transform: translateY(-4px);
 }
 
 button:active {
-	scale: 0.96;
+	box-shadow: 0 3px 10px #0468, 0 1px 0 #0088ff;
+	transform: translateY(-1px);
 }
 
 dialog::backdrop {
+	background-color: #fffa;
 	backdrop-filter: blur(5px);
-	background-color: #fff8;
 }
 
 dialog {
 	border: 1px solid #0452;
 	border-radius: 10px;
-	box-shadow: 0 5px 20px -5px #0344;
-	background-color: rgba(245, 251, 255);
+	box-shadow: 0 5px 20px -5px #0004;
+	background-color: rgba(229, 244, 255);
 	margin: auto;
 	padding: 0;
-	animation: modal 200ms;
+	animation: modal 400ms ease;
 }
 
 @keyframes modal {
 	0% {
-		margin-inline: auto;
-		margin-top: 4rem;
+		transform: translateY(-20vh);
 	}
 
 	100% {
-		margin: auto;
+		transform: translateY(0);
 	}
 }
 
 .modal-content {
 	display: grid;
-	gap: 2em;
+	gap: 1em;
 	padding: 1em;
+	min-width: 340px;
 }
 
 .modal-top {
@@ -227,13 +239,25 @@ dialog {
 .form {
 	display: grid;
 	grid-template-columns: 30px 1fr;
-	gap: 1em;
+	row-gap: 0.3em;
+	padding-inline-start: 1em;
+	align-items: center;
+}
+
+.form > label {
+	background-color: #fff8;
+	padding: 1em;
+	padding-inline-start: 0.6em;
+	margin-inline-start: 0.3em;
+	border-radius: 5px;
+	box-shadow: -50px 0 0 #fffc;
 }
 
 input[type='radio'] {
 	accent-color: #0088ff;
-	height: 30px;
-	width: 30px;
+	height: 20px;
+	z-index: 10;
+	width: 20px;
 }
 
 .button-box {
@@ -258,11 +282,26 @@ input[type='radio'] {
 	color: white;
 }
 
+.cancel-button:hover {
+	box-shadow: 0 3px 10px rgba(102, 0, 0, 0.533), 0 4px 0 #ff0000;
+}
+
+.cancel-button:active {
+	box-shadow: 0 3px 10px rgba(102, 0, 0, 0.533), 0 1px 0 #ff0000;
+	transform: translateY(-1px);
+}
+
 .close-modal {
 	background-color: transparent;
 	color: black;
-	margin-right: -5px;
-	margin-top: 5px;
+	border: 2px solid #0002;
+	aspect-ratio: 1;
+	padding: 0.4rem;
+}
+
+.close-modal:hover {
+	box-shadow: none;
+	transform: none;
 }
 
 @media screen and (max-width: 800px) {
